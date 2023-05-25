@@ -6,6 +6,7 @@ const handlebarsConfig = require('./config/handlebarsConfig');
 const homeController = require('./controllers/homeController');
 const cubeController = require('./controllers/cubeController');
 
+
 const app = express();
 
 const PORT = 5000;
@@ -19,6 +20,7 @@ app.use('/cubes', cubeController)
 
 
 // Routes
+
 app.get('/', (req, res) => {
     res.render('index')
 })
