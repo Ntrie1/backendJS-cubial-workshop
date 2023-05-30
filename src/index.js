@@ -13,7 +13,7 @@ const PORT = 5000;
 expressConfig(app);
 handlebarsConfig(app);
 
-app.use(router)
+app.use(router);
 
 
 
