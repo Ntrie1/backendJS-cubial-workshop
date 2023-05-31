@@ -17,13 +17,14 @@ router.post('/create', async (req, res) =>{
 });
 
 router.get('/:cubeId/details', async (req, res) =>{
-    const cube = await cubeManager.getOne(req.params.cubeId).lean();
+    const cube = await cubeManager.getOneWithAccessories(req.params.cubeId).lean();
 
     if(!cube){
         return res.redirect('/404')
     }
 
-    res.render('details', { cube })
+    res.render('details', { cube
+     })
 })
 
 
