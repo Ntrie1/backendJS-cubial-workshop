@@ -5,7 +5,7 @@ const Cube = require('../models/Cube')
 exports.getAll = async (search, from, to) => {
     let result = await Cube.find().lean();
 
-    if(search){
+    if (search) {
         result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
     }
 
@@ -23,9 +23,18 @@ exports.getAll = async (search, from, to) => {
 
 exports.getOne = (cubeId) => Cube.findById(cubeId);
 
-exports.create = async (cubeData) => {
+exports.create = (cubeData) => {
     const cube = new Cube(cubeData);
-    await cube.save();
-    
-    return cube;
+    return cube.save();
+
 };
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+ //  return Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } });
+
+ const cube = await Cube.findById(cubeId);
+ cube.accessories.push(accessoryId);
+
+ return cube.save();
+
+}
