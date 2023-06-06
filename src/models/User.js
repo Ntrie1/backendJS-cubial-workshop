@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bycrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 
 const userSchema = new mongoose.Schema({
@@ -23,7 +23,7 @@ userSchema.virtual('repeatPassowrd')
     });
 
     userSchema.pre('save', async function(){
-        const hash = await bycrypt.hash(this.password, 10);
+        const hash = await bcrypt.hash(this.password, 10);
 
         this.password = hash;
     })
