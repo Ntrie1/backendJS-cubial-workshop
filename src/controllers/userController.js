@@ -14,18 +14,20 @@ router.post('/register', async (req, res) => {
 })
 
 
-router.get('/login', (req,res)=>{
+router.get('/login', (req, res) => {
     res.render('users/login')
 })
 
-router.post('/login', async (req,res)=>{
+router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-   const user = await userManager.login(username, password);
+    const token =   await userManager.login(username, password);
 
-   console.log(user);
+    // console.log(user);
 
-   res.redirect('/')
+    res.cookie('auth', token, { httpOnly: true })
+
+    res.redirect('/')
 })
 
 

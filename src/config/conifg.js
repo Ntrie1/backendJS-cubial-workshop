@@ -1,0 +1,2 @@
+exports.SECRET = 'somel0ngS3kre1formayyya44li3a51on';
+// '8bf788c29d77e487e6b517439369d031b76201128438a199d3686a514093c18f';
