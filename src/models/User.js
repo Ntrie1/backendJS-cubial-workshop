@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'Username is required!'],
-        minLength: [5, 'Password is too short!'],
+        minLength: [5, 'Username is too short!'],
         match: /^[A-Za-z0-9]+$/,
         unique: true,
     },
@@ -18,14 +18,14 @@ const userSchema = new mongoose.Schema({
             },
             message:`Invalid password!`
         },
-        minLength: 8,
+        minLength: [8, 'Password is too short! At least 8 symbols required.'],
     },
 })
 
 userSchema.virtual('repeatPassowrd')
     .set(function(value){
         if(value !== this.password){
-            throw new mongoose.MongooseError('Password missmatch!')
+            throw new Error('Password missmatch!')
         }
     });
 
